@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Criar conta — Auréa Joalheria</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Italiana&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12h16M14 6l6 6-6 6"/></symbol>
+  <symbol id="eye" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+</svg>
+
+<header>
+<nav>
+    <a href="home.html">Home</a>
+    <a href="joias.html">Joias</a>
+    <a href="sobre.html">Nossa história</a>
+    <a href="contato.html">Contato</a>
+</nav>
+</header>
+
+<main class="auth">
+  <aside class="auth-photo signup">
+    <a href="home.html" class="logo auth-logo">AURÉA<small>JOALHERIA</small></a>
+    <span class="eyebrow">Sua história com a Auréa</span>
+    <blockquote>“Joias guardam instantes que o tempo não leva.”</blockquote>
+    <span class="side-note">Ouro 18k · Criação autoral</span>
+  </aside>
+
+  <section class="auth-form">
+    <div class="box">
+      <span class="eyebrow">Cadastro</span>
+      <h1 class="display">Crie sua conta.</h1>
+      <p class="sub">Cadastre-se para salvar suas joias favoritas e acompanhar cada detalhe dos seus pedidos.</p>
+
+      <form id="signupForm">
+        <div class="af">
+          <label for="nome">Nome completo</label>
+          <div class="wrap"><input type="text" id="nome" placeholder=" " required></div>
+        </div>
+
+        <div class="af">
+          <label for="email">E-mail</label>
+          <div class="wrap"><input type="email" id="email" placeholder=" " required></div>
+        </div>
+
+        <div class="af">
+          <label for="senha">Senha</label>
+          <div class="wrap">
+            <input type="password" id="senha" placeholder=" " minlength="8" required>
+            <button type="button" class="eye" aria-label="Mostrar senha"><svg><use href="#eye"/></svg></button>
+          </div>
+        </div>
+
+        <div class="af">
+          <label for="senha2">Confirme sua senha</label>
+          <div class="wrap">
+            <input type="password" id="senha2" placeholder=" " required>
+            <button type="button" class="eye" aria-label="Mostrar senha"><svg><use href="#eye"/></svg></button>
+          </div>
+        </div>
+
+        <p class="error" id="erro">As senhas não coincidem.</p>
+
+        <div class="af-row" style="justify-content:flex-start">
+          <label class="check">
+            <input type="checkbox" required>
+            <span>Concordo com os <a href="#" class="ulink">Termos de Uso</a> e a <a href="#" class="ulink">Política de Privacidade</a>.</span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn-full">Criar minha conta <svg><use href="#arrow"/></svg></button>
+      </form>
+
+      <p class="switch">Já possui uma conta? <a href="login.html" class="ulink">Entrar</a></p>
+    </div>
+  </section>
+</main>
+
+<script>
+  // Mostrar / ocultar senha
+  document.querySelectorAll(".eye").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const input = btn.parentElement.querySelector("input");
+      input.type = input.type === "password" ? "text" : "password";
+    });
+  });
+
+  // Confere se as senhas são iguais
+  document.getElementById("signupForm").addEventListener("submit", e => {
+    e.preventDefault();
+    const erro = document.getElementById("erro");
+    if (senha.value !== senha2.value) { erro.style.display = "block"; return; }
+    erro.style.display = "none";
+    alert("Conta criada! Conecte ao seu back-end.");
+  });
+</script>
+</body>
+</html>

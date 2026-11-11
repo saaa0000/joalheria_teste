@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carrinho — Auréa Joalheria</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Italiana&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="auth.css">
+<link rel="stylesheet" href="carrinho.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12h16M14 6l6 6-6 6"/></symbol>
+  <symbol id="heart" viewBox="0 0 24 24"><path d="M12 21s-8-5.5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.500-8 11-8 11z"/></symbol>
+</svg>
+
+<header class="solid">
+  <a href="home.html" class="logo">AURÉA<small>JOALHERIA</small></a>
+  <nav>
+   <a href="home.html">Home</a>
+    <a href="joias.html">Joias</a>
+    <a href="sobre.html">Nossa história</a>
+    <a href="contato.html">Contato</a>
+  </nav>
+  <div class="icons">
+    <a href="login.html" aria-label="Minha conta"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.500 3.600-7 8-7s8 2.500 8 7"/></svg></a>
+    <a href="favoritos.html" aria-label="Favoritos"><svg viewBox="0 0 24 24"><use href="#heart"/></svg></a>
+    <a href="carrinho.html" aria-label="Carrinho"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 13H6zM9 8V6a3 3 0 0 1 6 0v2"/></svg></a>
+  </div>
+</header>
+
+<section class="ct-head">
+  <div class="crumbs"><a href="home.html">Início</a><span>/</span><b>Carrinho</b></div>
+  <span class="eyebrow">Sua seleção</span>
+  <h1 class="display">Carrinho</h1>
+</section>
+
+<main class="ct-wrap" id="wrap">
+
+  <section>
+    <div id="list">
+      <div class="ct-top"><span>Peça</span><span id="qtdTotal">0 itens</span></div>
+      <div id="items"></div>
+      <div class="ct-back"><a href="joias.html" class="link">Continuar comprando <svg><use href="#arrow"/></svg></a></div>
+    </div>
+
+    <div class="ct-empty" id="empty">
+      <h2 class="display">Seu carrinho está vazio.</h2>
+      <p>Descubra peças feitas para atravessar o tempo.</p>
+      <a href="joias.html" class="link">Ver todas as joias <svg><use href="#arrow"/></svg></a>
+    </div>
+  </section>
+
+  <aside class="ct-summary" id="summary">
+    <h2 class="display">Resumo</h2>
+
+    <div class="ct-row"><span>Subtotal</span><span id="subtotal">R$ 0,00</span></div>
+    <div class="ct-row"><span>Frete</span><span id="frete">—</span></div>
+    <div class="ct-row discount" id="descRow" style="display:none"><span>Desconto</span><span id="desc">R$ 0,00</span></div>
+
+    <div class="ct-row total"><span>Total</span><span id="total">R$ 0,00</span></div>
+    <p class="ct-note" id="parcela"></p>
+
+    <div class="ct-field">
+      <label for="cep">Calcular frete</label>
+      <div class="wrap">
+        <input id="cep" inputmode="numeric" maxlength="9" placeholder="00000-000">
+        <button type="button" id="cepBtn">Calcular</button>
+      </div>
+      <p class="ct-msg" id="cepMsg"></p>
+    </div>
+
+    <div class="ct-field">
+      <label for="cupom">Cupom de desconto</label>
+      <div class="wrap">
+        <input id="cupom" placeholder="Digite seu cupom">
+        <button type="button" id="cupomBtn">Aplicar</button>
+      </div>
+      <p class="ct-msg" id="cupomMsg"></p>
+    </div>
+
+    <button class="btn-full" id="checkout">Finalizar compra <svg><use href="#arrow"/></svg></button>
+    <p class="ct-secure">Pagamento seguro · Embalagem presente</p>
+  </aside>
+
+</main>
+
+<footer>
+  <div class="footer-top">
+    <a href="home.html" class="logo" style="font-size:34px">AURÉA<small>JOALHERIA</small></a>
+    <div><h4>Descubra</h4><ul><li><a href="joias.html">Novidades</a></li><li><a href="joias.html">Anéis</a></li><li><a href="joias.html">Brincos</a></li><li><a href="joias.html">Colares</a></li></ul></div>
+    <div><h4>Auréa</h4><ul><li><a href="index.html#essencia">Nossa história</a></li><li><a href="index.html#essencia">Ateliê</a></li><li><a href="#">Responsabilidade</a></li><li><a href="#">Contato</a></li></ul></div>
+    <div><h4>Atendimento</h4><ul><li><a href="#">Envios e entregas</a></li><li><a href="#">Trocas e devoluções</a></li><li><a href="#">Guia de medidas</a></li><li><a href="#">Fale conosco</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Auréa Joalheria. Todos os direitos reservados.</span>
+    <div><a href="#">Instagram</a><a href="#">Pinterest</a></div>
+  </div>
+</footer>
+
+<script>
+  const FRETE_GRATIS = 3000, FRETE_FIXO = 45;
+  const CUPONS = { "AUREA10": 0.10, "BEMVINDA": 0.05 };
+  const brl = v => v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+  const $ = id => document.getElementById(id);
+
+  // Itens salvos no navegador (se não houver, usa exemplos)
+  let itens;
+  try { itens = JSON.parse(localStorage.getItem("aurea_carrinho")); } catch (e) {}
+  if (!Array.isArray(itens)) itens = [
+    { nome: "Brinco Orbital", detalhe: "Ouro 18k · Pérola barroca", preco: 1890, qtd: 1, foto: "var(--img-1)" },
+    { nome: "Colar Aura",     detalhe: "Ouro 18k · Turmalina azul", preco: 2490, qtd: 1, foto: "var(--img-2)" }
+  ];
+
+  let frete = null;     // null = ainda não calculado
+  let desconto = 0;     // percentual
+
+  const salvar = () => { try { localStorage.setItem("aurea_carrinho", JSON.stringify(itens)); } catch (e) {} };
+
+  function render() {
+    const vazio = itens.length === 0;
+    $("list").style.display = vazio ? "none" : "block";
+    $("empty").style.display = vazio ? "block" : "none";
+    $("summary").style.display = vazio ? "none" : "block";
+    $("wrap").style.gridTemplateColumns = vazio ? "1fr" : "";
+
+    $("items").innerHTML = itens.map((it, i) => `
+      <div class="ct-item">
+        <div class="ct-thumb" style="--photo:${it.foto}"></div>
+        <div>
+          <h3>${it.nome}</h3>
+          <small>${it.detalhe}</small>
+          <button class="ct-remove" onclick="remover(${i})">Remover</button>
+        </div>
+        <div class="qty">
+          <button onclick="mudar(${i},-1)" aria-label="Diminuir">−</button>
+          <span>${it.qtd}</span>
+          <button onclick="mudar(${i},1)" aria-label="Aumentar">+</button>
+        </div>
+        <div class="ct-price">${brl(it.preco * it.qtd)}</div>
+      </div>`).join("");
+
+    const qtd = itens.reduce((s, it) => s + it.qtd, 0);
+    const sub = itens.reduce((s, it) => s + it.preco * it.qtd, 0);
+    const valorDesc = sub * desconto;
+    const valorFrete = frete === null ? 0 : (sub >= FRETE_GRATIS ? 0 : frete);
+    const total = sub - valorDesc + valorFrete;
+
+    $("qtdTotal").textContent = qtd + (qtd === 1 ? " item" : " itens");
+    $("subtotal").textContent = brl(sub);
+    $("frete").textContent = frete === null ? "—" : (valorFrete === 0 ? "Grátis" : brl(valorFrete));
+    $("descRow").style.display = desconto ? "flex" : "none";
+    $("desc").textContent = "− " + brl(valorDesc);
+    $("total").textContent = brl(total);
+    $("parcela").textContent = "ou 10x de " + brl(total / 10) + " sem juros";
+    salvar();
+  }
+
+  function mudar(i, d) { itens[i].qtd = Math.max(1, itens[i].qtd + d); render(); }
+  function remover(i)  { itens.splice(i, 1); render(); }
+
+  // CEP: máscara + cálculo (simulado)
+  $("cep").addEventListener("input", e => {
+    let v = e.target.value.replace(/\D/g, "").slice(0, 8);
+    e.target.value = v.length > 5 ? v.slice(0, 5) + "-" + v.slice(5) : v;
+  });
+  $("cepBtn").addEventListener("click", () => {
+    const msg = $("cepMsg");
+    if ($("cep").value.replace(/\D/g, "").length !== 8) {
+      msg.textContent = "Digite um CEP válido."; msg.className = "ct-msg err"; return;
+    }
+    frete = FRETE_FIXO;
+    msg.className = "ct-msg";
+    msg.textContent = "Entrega em 3 a 7 dias úteis. Frete grátis acima de " + brl(FRETE_GRATIS) + ".";
+    render();
+  });
+
+  // Cupom
+  $("cupomBtn").addEventListener("click", () => {
+    const code = $("cupom").value.trim().toUpperCase();
+    const msg = $("cupomMsg");
+    if (CUPONS[code]) {
+      desconto = CUPONS[code];
+      msg.className = "ct-msg"; msg.textContent = "Cupom aplicado: " + (desconto * 100) + "% de desconto.";
+    } else {
+      desconto = 0;
+      msg.className = "ct-msg err"; msg.textContent = "Cupom inválido.";
+    }
+    render();
+  });
+
+  $("checkout").addEventListener("click", () => {
+    if (frete === null) { $("cepMsg").textContent = "Calcule o frete antes de finalizar."; $("cepMsg").className = "ct-msg err"; $("cep").focus(); return; }
+    alert("Pedido enviado! Conecte ao seu sistema de pagamento.");
+  });
+
+  render();
+</script>
+</body>
+</html>

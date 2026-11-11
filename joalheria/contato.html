@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contato — Auréa Joalheria</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Italiana&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="contato.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12h16M14 6l6 6-6 6"/></symbol>
+  <symbol id="heart" viewBox="0 0 24 24"><path d="M12 21s-8-5.5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.500-8 11-8 11z"/></symbol>
+</svg>
+
+<header class="solid">
+  <a href="index.html" class="logo">AURÉA<small>JOALHERIA</small></a>
+  <nav>
+   <a href="home.html">Home</a>
+    <a href="joias.html">Joias</a>
+    <a href="sobre.html">Nossa história</a>
+    <a href="contato.html">Contato</a>
+  </nav>
+  <div class="icons">
+    <a href="login.html" aria-label="Minha conta"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.500 3.600-7 8-7s8 2.500 8 7"/></svg></a>
+    <a href="#" aria-label="Favoritos"><svg viewBox="0 0 24 24"><use href="#heart"/></svg></a>
+    <a href="carrinho.html" aria-label="Carrinho"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 13H6zM9 8V6a3 3 0 0 1 6 0v2"/></svg></a>
+  </div>
+</header>
+
+<section class="ct-hero">
+  <div class="crumbs"><a href="home.html">Início</a><span>/</span><b>Contato</b></div>
+  <span class="eyebrow">Fale conosco</span>
+  <h1 class="display">Contato</h1>
+  <p>Dúvidas sobre uma peça, um pedido ou uma criação sob medida? Será um prazer atender você.</p>
+</section>
+
+<main class="contact">
+
+  <section class="cform">
+    <span class="eyebrow">Escreva para nós</span>
+    <h2 class="display">Como podemos ajudar?</h2>
+
+    <form id="contactForm">
+      <div class="af-row2">
+        <div class="af">
+          <label for="nome">Nome</label>
+          <div class="wrap"><input type="text" id="nome" placeholder=" " required></div>
+        </div>
+        <div class="af">
+          <label for="email">E-mail</label>
+          <div class="wrap"><input type="email" id="email" placeholder=" " required></div>
+        </div>
+      </div>
+
+      <div class="af-row2">
+        <div class="af">
+          <label for="tel">Telefone (opcional)</label>
+          <div class="wrap"><input type="tel" id="tel" placeholder=" " maxlength="15"></div>
+        </div>
+        <div class="af">
+          <label for="assunto">Assunto</label>
+          <div class="wrap">
+            <select id="assunto" required>
+              <option value="">Selecione</option>
+              <option>Dúvida sobre uma joia</option>
+              <option>Meu pedido</option>
+              <option>Criação sob medida</option>
+              <option>Trocas e devoluções</option>
+              <option>Outro assunto</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="af">
+        <label for="msg">Mensagem</label>
+        <div class="wrap"><textarea id="msg" placeholder= " " required></textarea></div>
+      </div>
+
+      <label class="check">
+        <input type="checkbox" required>
+        <span>Concordo com o uso dos meus dados para retorno do atendimento.</span>
+      </label>
+
+      <button type="submit" class="btn-full">Enviar mensagem <svg><use href="#arrow"/></svg></button>
+      <p class="sent" id="sent">Mensagem enviada! Responderemos em até 1 dia útil.</p>
+    </form>
+  </section>
+
+  <aside>
+    <span class="eyebrow">Atendimento</span>
+    <h2 class="display">Outros canais.</h2>
+
+    <div class="channels">
+      <div class="channel">
+        <small>E-mail</small>
+        <a href="mailto:contato@aureajoalheria.com.br">contato@aureajoalheria.com.br</a>
+        <span>Resposta em até 1 dia útil</span>
+      </div>
+      <div class="channel">
+        <small>WhatsApp</small>
+        <a href="https://wa.me/5500000000000">(00) 00000-0000</a>
+        <span>Atendimento personalizado</span>
+      </div>
+      <div class="channel">
+        <small>Ateliê</small>
+        <p>Rua Exemplo, 123<br>Bairro, Cidade — Estado</p>
+        <span>Visitas somente com horário agendado</span>
+      </div>
+      <div class="channel">
+        <small>Horário</small>
+        <p>Seg a Sex · 9h às 18h</p>
+        <span>Sábados · 10h às 14h</span>
+      </div>
+    </div>
+  </aside>
+
+</main>
+
+<section class="faq">
+  <div class="faq-head">
+    <span class="eyebrow">Antes de escrever</span>
+    <h2 class="display">Perguntas frequentes.</h2>
+  </div>
+
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-q">Qual o prazo de entrega? <i>+</i></button>
+      <div class="faq-a"><p>Peças em estoque são enviadas em até 3 dias úteis, e a entrega leva de 3 a 7 dias úteis. Peças sob medida têm prazo combinado durante a criação.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Posso trocar ou devolver uma joia? <i>+</i></button>
+      <div class="faq-a"><p>Sim. Você pode solicitar troca ou devolução em até 7 dias após o recebimento, com a peça sem uso e na embalagem original.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Como descubro o tamanho do meu anel? <i>+</i></button>
+      <div class="faq-a"><p>Consulte o nosso guia de medidas ou fale com a gente. Podemos enviar um medidor gratuito para você.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">As joias têm garantia? <i>+</i></button>
+      <div class="faq-a"><p>Todas as joias acompanham certificado e oferecem limpeza e manutenção ao longo dos anos.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <a href="home.html" class="logo" style="font-size:34px">AURÉA<small>JOALHERIA</small></a>
+    <div><h4>Descubra</h4><ul><li><a href="joias.html">Novidades</a></li><li><a href="joias.html">Anéis</a></li><li><a href="joias.html">Brincos</a></li><li><a href="joias.html">Colares</a></li></ul></div>
+    <div><h4>Auréa</h4><ul><li><a href="sobre.html">Nossa história</a></li><li><a href="sobre.html">Ateliê</a></li><li><a href="#">Responsabilidade</a></li><li><a href="contato.html">Contato</a></li></ul></div>
+    <div><h4>Atendimento</h4><ul><li><a href="#">Envios e entregas</a></li><li><a href="#">Trocas e devoluções</a></li><li><a href="#">Guia de medidas</a></li><li><a href="contato.html">Fale conosco</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Auréa Joalheria. Todos os direitos reservados.</span>
+    <div><a href="#">Instagram</a><a href="#">Pinterest</a></div>
+  </div>
+</footer>
+
+<script>
+  // Máscara de telefone
+  document.getElementById("tel").addEventListener("input", e => {
+    let v = e.target.value.replace(/\D/g, "").slice(0, 11);
+    if (v.length > 6) v = `(${v.slice(0,2)}) ${v.slice(2,7)}-${v.slice(7)}`;
+    else if (v.length > 2) v = `(${v.slice(0,2)}) ${v.slice(2)}`;
+    e.target.value = v;
+  });
+
+  // Envio (conecte ao seu back-end ou a um serviço de formulário)
+  document.getElementById("contactForm").addEventListener("submit", e => {
+    e.preventDefault();
+    document.getElementById("sent").style.display = "block";
+    e.target.reset();
+  });
+
+  // FAQ em sanfona
+  document.querySelectorAll(".faq-q").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const item = btn.parentElement;
+      const resp = item.querySelector(".faq-a");
+      const abrir = !item.classList.contains("open");
+
+      document.querySelectorAll(".faq-item").forEach(i => {
+        i.classList.remove("open");
+        i.querySelector(".faq-a").style.maxHeight = null;
+      });
+
+      if (abrir) {
+        item.classList.add("open");
+        resp.style.maxHeight = resp.scrollHeight + "px";
+      }
+    });
+  });
+</script>
+</body>
+</html>

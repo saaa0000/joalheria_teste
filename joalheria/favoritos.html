@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Favoritos — Auréa Joalheria</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Italiana&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="favoritos.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12h16M14 6l6 6-6 6"/></symbol>
+  <symbol id="heart" viewBox="0 0 24 24"><path d="M12 21s-8-5.5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.500-8 11-8 11z"/></symbol>
+</svg>
+
+<header class="solid">
+  <a href="index.html" class="logo">AURÉA<small>JOALHERIA</small></a>
+  <nav>
+     <a href="home.html">Home</a>
+    <a href="joias.html">Joias</a>
+    <a href="sobre.html">Nossa história</a>
+    <a href="contato.html">Contato</a>
+  </nav>
+  <div class="icons">
+    <a href="login.html" aria-label="Minha conta"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.500 3.600-7 8-7s8 2.500 8 7"/></svg></a>
+    <a href="favoritos.html" aria-label="Favoritos"><svg viewBox="0 0 24 24"><use href="#heart"/></svg></a>
+    <a href="carrinho.html" aria-label="Carrinho"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 13H6zM9 8V6a3 3 0 0 1 6 0v2"/></svg></a>
+  </div>
+</header>
+
+<section class="fv-hero">
+  <div class="crumbs"><a href="index.html">Início</a><span>/</span><b>Favoritos</b></div>
+  <span class="eyebrow">Sua seleção pessoal</span>
+  <h1 class="display">Favoritos</h1>
+  <p>As joias que chamaram a sua atenção, guardadas para quando você quiser.</p>
+</section>
+
+<main class="fv">
+
+  <div class="fv-bar" id="bar">
+    <span id="count">0 joias</span>
+    <button id="clearAll">Limpar favoritos</button>
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+  <div class="fv-empty" id="empty">
+    <svg viewBox="0 0 24 24"><use href="#heart"/></svg>
+    <h2 class="display">Nenhum favorito ainda.</h2>
+    <p>Toque no coração de uma joia para guardá-la aqui.</p>
+    <a href="joias.html" class="link">Descobrir as joias <svg><use href="#arrow"/></svg></a>
+  </div>
+
+</main>
+
+<div class="toast" id="toast">Adicionado ao carrinho <a href="carrinho.html">Ver carrinho</a></div>
+
+<footer>
+  <div class="footer-top">
+    <a href="index.html" class="logo" style="font-size:34px">AURÉA<small>JOALHERIA</small></a>
+    <div><h4>Descubra</h4><ul><li><a href="joias.html">Novidades</a></li><li><a href="joias.html">Anéis</a></li><li><a href="joias.html">Brincos</a></li><li><a href="joias.html">Colares</a></li></ul></div>
+    <div><h4>Auréa</h4><ul><li><a href="sobre.html">Nossa história</a></li><li><a href="sobre.html">Ateliê</a></li><li><a href="#">Responsabilidade</a></li><li><a href="contato.html">Contato</a></li></ul></div>
+    <div><h4>Atendimento</h4><ul><li><a href="#">Envios e entregas</a></li><li><a href="#">Trocas e devoluções</a></li><li><a href="#">Guia de medidas</a></li><li><a href="contato.html">Fale conosco</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Auréa Joalheria. Todos os direitos reservados.</span>
+    <div><a href="#">Instagram</a><a href="#">Pinterest</a></div>
+  </div>
+</footer>
+
+<script src="favoritos.js"></script>
+<script>
+  const grid = document.getElementById("grid");
+  const empty = document.getElementById("empty");
+  const bar = document.getElementById("bar");
+  const toast = document.getElementById("toast");
+  const brl = v => "R$ " + v.toLocaleString("pt-BR");
+
+  function render() {
+    const ids = lerFavs().filter(id => CATALOGO[id]);
+    grid.innerHTML = ids.map(id => {
+      const p = CATALOGO[id];
+      return `
+        <article class="card" data-id="${id}" style="--photo:${p.foto}">
+          <div class="img">
+            ${p.tag ? `<span class="tag">${p.tag}</span>` : ""}
+            <svg class="heart active" viewBox="0 0 24 24"><use href="#heart"/></svg>
+            <span class="quick" data-add="${id}">Adicionar ao carrinho</span>
+          </div>
+          <div class="card-info"><div>${p.nome}<small>${p.cat}</small></div><span>${brl(p.preco)}</span></div>
+        </article>`;
+    }).join("");
+
+    const n = ids.length;
+    document.getElementById("count").textContent = n + (n === 1 ? " joia" : " joias");
+    empty.style.display = n ? "none" : "block";
+    bar.style.display = n ? "flex" : "none";
+  }
+
+  // Adicionar ao carrinho
+  grid.addEventListener("click", e => {
+    const btn = e.target.closest("[data-add]");
+    if (!btn) return;
+    adicionarAoCarrinho(btn.dataset.add);
+    toast.classList.add("show");
+    setTimeout(() => toast.classList.remove("show"), 3200);
+  });
+
+  // Limpar tudo
+  document.getElementById("clearAll").addEventListener("click", () => {
+    if (confirm("Remover todas as joias dos favoritos?")) {
+      salvarFavs([]); atualizarFavUI(); render();
+    }
+  });
+
+  // Quando um coração é desmarcado aqui, a peça sai da lista
+  document.addEventListener("favoritos:change", render);
+
+  render();
+  atualizarFavUI();
+</script>
+</body>
+</html>

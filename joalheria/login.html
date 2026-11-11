@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entrar — Auréa Joalheria</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Italiana&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12h16M14 6l6 6-6 6"/></symbol>
+  <symbol id="eye" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+</svg>
+
+<header>
+<nav>
+    <a href="home.html">Home</a>
+    <a href="joias.html">Joias</a>
+    <a href="sobre.html">Nossa história</a>
+    <a href="contato.html">Contato</a>
+</nav>
+</header>
+
+<main class="auth">
+  <aside class="auth-photo login">
+    <a href="home.html" class="logo auth-logo">AURÉA<small>JOALHERIA</small></a>
+    <span class="eyebrow">Sua história com a Auréa</span>
+    <blockquote>“Joias guardam instantes que o tempo não leva.”</blockquote>
+    <span class="side-note">Ouro 18k · Criação autoral</span>
+  </aside>
+
+  <section class="auth-form">
+    <div class="box">
+      <span class="eyebrow">Login</span>
+      <h1 class="display">Bem-vinda de volta.</h1>
+      <p class="sub">Entre para acessar seus favoritos, pedidos e experiências exclusivas.</p>
+
+      <form id="loginForm">
+        <div class="af">
+          <label for="email">E-mail</label>
+          <div class="wrap"><input type="email" id="email" placeholder=" " required></div>
+        </div>
+
+        <div class="af">
+          <label for="senha">Senha</label>
+          <div class="wrap">
+            <input type="password" id="senha" placeholder=" " required>
+            <button type="button" class="eye" aria-label="Mostrar senha"><svg><use href="#eye"/></svg></button>
+          </div>
+        </div>
+
+        <div class="af-row">
+          <label class="check"><input type="checkbox"> Lembrar de mim</label>
+          <a href="#" class="ulink">Esqueci minha senha</a>
+        </div>
+
+        <button type="submit" class="btn-full">Entrar <svg><use href="#arrow"/></svg></button>
+      </form>
+
+      <p class="switch">Ainda não tem uma conta? <a href="cadastro.html" class="ulink">Cadastre-se</a></p>
+    </div>
+  </section>
+</main>
+
+<script>
+  // Mostrar / ocultar senha
+  document.querySelectorAll(".eye").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const input = btn.parentElement.querySelector("input");
+      input.type = input.type === "password" ? "text" : "password";
+    });
+  });
+
+  // Envio (conecte ao seu back-end)
+  document.getElementById("loginForm").addEventListener("submit", e => {
+    e.preventDefault();
+    alert("Login enviado! Conecte ao seu back-end.");
+  });
+</script>
+</body>
+</html>
